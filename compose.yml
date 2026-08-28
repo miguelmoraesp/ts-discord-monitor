@@ -1,0 +1,24 @@
+services:
+  teamspeak:
+    image: teamspeak
+    restart: unless-stopped
+    environment:
+      TS3SERVER_LICENSE: accept
+    ports:
+      - "9987:9987/udp"
+      - "10011:10011"
+      - "30033:30033"
+    volumes:
+      - ts3data:/var/ts3server:U
+      - ./teamspeak/query_ip_allowlist.txt:/var/ts3server/query_ip_allowlist.txt:Z
+
+  bot:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - teamspeak
+    env_file:
+      - .env
+
+volumes:
+  ts3data:
