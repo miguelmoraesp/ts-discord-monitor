@@ -9,7 +9,7 @@ services:
       - "10011:10011"
       - "30033:30033"
     volumes:
-      - ts3data:/var/ts3server:U
+      - teamspeak-data:/var/ts3server:U
       - ./teamspeak/query_ip_allowlist.txt:/var/ts3server/query_ip_allowlist.txt:Z
 
   bot:
@@ -21,4 +21,4 @@ services:
       - .env
 
 volumes:
-  ts3data:
+  teamspeak-data:
