@@ -38,6 +38,22 @@ pnpm install
 pnpm dev
 ```
 
+### Production
+
+A GitHub Actions workflow ([.github/workflows/docker-publish.yml](.github/workflows/docker-publish.yml)) builds the image on every push to `main` (and on `v*.*.*` tags) and publishes it to GitHub Container Registry at `ghcr.io/miguelmoraesp/ts-discord-monitor`.
+
+To run in production using the published image instead of building locally, pull `ghcr.io/miguelmoraesp/ts-discord-monitor:latest` for the `bot` service (state is persisted in `./data`):
+
+```bash
+docker compose -f compose.prod.yaml up -d
+```
+
+On a Podman host, [scripts/deploy.sh](scripts/deploy.sh) pulls the latest image and recreates the stack in one step:
+
+```bash
+./scripts/deploy.sh
+```
+
 ## Configuration
 
 Environment variables (see `.env.example`):
