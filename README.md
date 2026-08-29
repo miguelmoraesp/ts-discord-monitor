@@ -4,7 +4,7 @@ A small bot that keeps a Discord channel in sync with the live status of a TeamS
 
 ## What it does
 
-- Connects to a TeamSpeak server via the ServerQuery interface and to a Discord bot.
+- Connects to a TeamSpeak server via the SSH ServerQuery interface and to a Discord bot.
 - Posts (and keeps updating) a status message in a designated Discord channel showing:
   - Whether the server is online or offline
   - Total connected clients / max clients
@@ -61,8 +61,8 @@ Environment variables (see `.env.example`):
 | Variable | Description |
 | --- | --- |
 | `TS_HOST` | TeamSpeak server host |
-| `TS_QUERY_PORT` | ServerQuery port |
-| `TS_QUERY_USER` / `TS_QUERY_PASSWORD` | ServerQuery credentials |
+| `TS_QUERY_PORT` | SSH ServerQuery port (default `10022`) |
+| `TS_QUERY_USER` / `TS_QUERY_PASSWORD` | ServerQuery credentials — the password is also passed to the TeamSpeak container as `TSSERVER_QUERY_ADMIN_PASSWORD` |
 | `TS_VOICE_PORT` | Voice port |
 | `TS_SERVER_ID` | Virtual server ID |
 | `TS_PUBLIC_ADDRESS` | Address shown to users for connecting |

@@ -1,16 +1,19 @@
 services:
   teamspeak:
-    image: teamspeak
+    image: docker.io/teamspeaksystems/teamspeak6-server:latest
     restart: unless-stopped
     environment:
-      TS3SERVER_LICENSE: accept
+      TSSERVER_LICENSE_ACCEPTED: accept
+      TSSERVER_QUERY_SSH_ENABLED: "true"
+      TSSERVER_QUERY_ADMIN_PASSWORD: ${TS_QUERY_PASSWORD}
+      TSSERVER_QUERY_ALLOW_LIST: /var/tsserver/query_ip_allowlist.txt
     ports:
       - "9987:9987/udp"
-      - "10011:10011"
+      - "10022:10022"
       - "30033:30033"
     volumes:
-      - teamspeak-data:/var/ts3server:U
-      - ./teamspeak/query_ip_allowlist.txt:/var/ts3server/query_ip_allowlist.txt:Z
+      - teamspeak-data:/var/tsserver:U
+      - ./teamspeak/query_ip_allowlist.txt:/var/tsserver/query_ip_allowlist.txt:Z
 
   bot:
     build: .
@@ -22,3 +25,4 @@ services:
 
 volumes:
   teamspeak-data:
+    external: true

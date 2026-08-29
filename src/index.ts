@@ -6,7 +6,7 @@ import { env } from "./env.js";
 const app = new App({
     tsOptions: {
         host: env.TS_HOST,
-        protocol: QueryProtocol.RAW,
+        protocol: QueryProtocol.SSH,
         queryport: env.TS_QUERY_PORT,
         serverport: env.TS_VOICE_PORT,
         username: env.TS_QUERY_USER,

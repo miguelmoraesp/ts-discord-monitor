@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const schema = z.object({
     TS_HOST: z.string().default("127.0.0.1"),
-    TS_QUERY_PORT: z.coerce.number().default(10011),
+    TS_QUERY_PORT: z.coerce.number().default(10022),
     TS_QUERY_USER: z.string().min(1),
     TS_QUERY_PASSWORD: z.string().min(1),
     TS_VOICE_PORT: z.coerce.number().default(9987),
